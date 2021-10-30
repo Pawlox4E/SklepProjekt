@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS sklep;
+DROP DATABASE IF EXISTS sklep;
+CREATE DATABASE sklep;
 USE sklep;
 
 DROP TABLE IF EXISTS `pracownik`;
@@ -31,7 +32,7 @@ CREATE TABLE `produkt` (
     `kategoria` VARCHAR(48) NOT NULL,
     `typ` VARCHAR(48) NOT NULL,
     `id_zdjecia` INT NOT NULL,
-    PRIMARY KEY (`id_produktu`)
+    PRIMARY KEY (`id_produkt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `zdjecia`;
@@ -76,18 +77,18 @@ CREATE TABLE `uzytkownik` (
 DROP TABLE IF EXISTS `koszyk`;
 CREATE TABLE `koszyk` (
 	`id_koszyk` INT NOT NULL AUTO_INCREMENT,
-    `id_zamowienia` INT DEFAULT NULL,
+    `id_zamowienie` INT DEFAULT NULL,
     PRIMARY KEY (`id_koszyk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE pracownik ADD UNIQUE INDEX (id_pracownik);
-ALTER TABLE stanowiska ADD UNIQUE INDEX (id_stanowiska);
+ALTER TABLE stanowiska ADD UNIQUE INDEX (id_stanowisko);
 ALTER TABLE produkt ADD UNIQUE INDEX (id_produkt);
 ALTER TABLE zdjecia ADD UNIQUE INDEX (id_zdjecia);
 ALTER TABLE zamowienie ADD UNIQUE INDEX (id_zamowienie);
 ALTER TABLE klient ADD UNIQUE INDEX (id_klient);
-ALTER TABLE uzytkownik ADD UNIQUE INDEX (id_uzytkownik);
+ALTER TABLE uzytkownik ADD UNIQUE INDEX (login);
 ALTER TABLE koszyk ADD UNIQUE INDEX (id_koszyk);
 
 
@@ -98,4 +99,4 @@ ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_produkt`) REFERENCES `pro
 ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_pracownik`) REFERENCES `pracownik`(`id_pracownik`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE uzytkownik ADD CONSTRAINT FOREIGN KEY (`id_klient`) REFERENCES `klient`(`id_klient`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE uzytkownik ADD CONSTRAINT FOREIGN KEY (`id_koszyk`) REFERENCES `koszyk`(`id_koszyk`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE koszyk ADD CONSTRAINT FOREIGN KEY (`id_zamowienia`) REFERENCES `zamowienie`(`id_zamowienia`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE koszyk ADD CONSTRAINT FOREIGN KEY (`id_zamowienie`) REFERENCES `zamowienie`(`id_zamowienie`) ON DELETE CASCADE ON UPDATE CASCADE;

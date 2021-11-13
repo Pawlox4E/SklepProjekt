@@ -1,0 +1,229 @@
+body {
+	background-color: rgb(122, 122, 122);
+}
+.menu {
+	position: fixed;
+}
+.textnaglowek {
+	text-align: center;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 0.9vw;
+	color: rgba(0,192,220,1);
+}
+.navbar-toggler {
+	border-color: rgba(0,192,220,1);
+	background-color: black;
+	border-width: 3px;
+}
+.klasyzdj {
+	width: 14vw;
+	height: auto;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.opisklasy {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.3vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+}
+.szukanie {
+	border-color: rgba(0,192,220,1);
+	color: rgba(0,192,220,1);
+	font-size: 0.8vw;
+}
+.navbarzdj {
+		width: 2vw;
+		height: auto;
+		padding-left: auto; 
+		padding-right: auto;
+}
+.akcesoria {
+	background-color: rgb(122, 122, 122);
+	color: black;
+}
+.akcesoriazdj {
+	width: auto;
+	height: 16vw;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.produktzdj {
+	width: 20vw;
+	height: auto;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.produktopis {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.koszyknazwa {
+	background-color: black;
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.4vw;
+	color: rgba(0,192,220,1);
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+	padding: 1vw;
+	margin-bottom: 0px;
+}
+.koszykzdj {
+	width: 16vw;
+	height: auto;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.koszykopis {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.usun {
+	background-color: rgb(217, 33, 33);
+	border-radius: 7px;
+	border-style: solid;
+	border-color: black;
+	transition: .5s;
+}
+.usun:hover {
+	background-color: rgb(221, 72, 72);
+}
+.koszykinfo {
+	border-radius: 7px;
+	border-style: solid;
+	border-color: black;
+}
+.koszykopis2 {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.wsparcietytul {
+	background-color: black;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.4vw;
+	color: rgba(0,192,220,1);
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+	padding: 1vw;
+	margin-bottom: 0px;
+}
+.wsparcieopis {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.probolemopis2 {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.komputerzdj {
+	width: 16vw;
+	height: auto;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.marketingtext {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 400;
+}
+.komputer2zdj {
+	width: 24vw;
+	height: auto;
+	padding-left: auto; 
+	padding-right: auto;
+}
+.cenakomputerdiv {
+	border-radius: 7px;
+	border-style: solid;
+	border-color: black;
+}
+.cenakomputer {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+}
+.komputerdokoszyka {
+	background-color: black;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.5vw;
+	color: rgba(0,192,220,1);
+	font-family: Arial;
+	font-style: normal;
+	font-weight: 600;
+	border-radius: 7px;
+	border-style: solid;
+	border-color: black;
+}
+.zjdlogo {
+	width: auto;
+	height: 2vw; 
+}
+.galeria .galeria-duza {
+    position: relative;
+    text-align: left;
+    margin-bottom: .5em;
+}
+.galeria .galeria-duza h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 2px 5px;
+}
+.galeria .galeria-duza img {
+    display: block;
+    height: auto;
+    width: 15vw;
+}
+.galeria ul.galeria-mala {
+    margin: 0;
+    padding: 0;
+}
+.galeria ul.galeria-mala li {
+    display: inline-block;
+}
+.galeria ul.galeria-mala li img {
+    height: auto;
+    width: 6vw;
+    vertical-align: middle;
+}
+.galeria ul.galeria-mala li img.active {
+    opacity: .65;
+}

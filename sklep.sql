@@ -42,6 +42,8 @@ CREATE TABLE `uzytkownik` (
 	`id_uzytkownik` INT NOT NULL AUTO_INCREMENT,
 	`login` VARCHAR(48) NOT NULL,
     `haslo` VARCHAR(300) NOT NULL,
+    `imie` VARCHAR(48) NOT NULL,
+    `nazwisko` VARCHAR(48) NOT NULL,
     `miejscowosc` VARCHAR(48) NOT NULL,
     `ulica` VARCHAR(48) NOT NULL,
     `numer_domu` VARCHAR(6) NOT NULL,

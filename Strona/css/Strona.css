@@ -4,6 +4,12 @@ body {
 .menu {
 	position: fixed;
 }
+.error {
+	color:red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+}
 .textnaglowek {
 	text-align: center;
 	font-family: Arial;

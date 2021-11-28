@@ -1,66 +1,13 @@
 <?php
 
 	session_start();
-
-	require_once "connect.php";
-
-	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 	
-	if ($polaczenie->connect_errno!=0)
+	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 	{
-		echo "Error: ".$polaczenie->connect_errno;
+		header('Location: udanelogowanie.php');
+		exit();
 	}
-	else
-	{
-		$login = $_POST['login'];
-		$haslo = $_POST['haslo'];
-		
-		$login = htmlentities($login, ENT_QUOTES, "UTF-8");
-	
-		if ($rezultat = @$polaczenie->query(
-		sprintf("SELECT * FROM uzytkownik WHERE user='%s'",
-		mysqli_real_escape_string($polaczenie,$login))))
-		{
-			$ilu_userow = $rezultat->num_rows;
-			if($ilu_userow>0)
-			{
-				$wiersz = $rezultat->fetch_assoc();
-				
-				if (password_verify($haslo, $wiersz['pass']))
-				{
-					$_SESSION['zalogowany'] = true;
-					$_SESSION['id_uzytkownik'] = $wiersz['id_uzytkownik'];
-					$_SESSION['login'] = $wiersz['login'];
-          $_SESSION['imie'] = $wiersz['imie'];
-          $_SESSION['nazwisko'] = $wiersz['nazwisko'];
-					$_SESSION['miejscowosc'] = $wiersz['miejscowosc'];
-					$_SESSION['ulica'] = $wiersz['ulica'];
-					$_SESSION['numer_domu'] = $wiersz['numer_domu'];
-					$_SESSION['nr_telefonu'] = $wiersz['nr_telefonu'];
-					$_SESSION['email'] = $wiersz['email'];
-					
-					unset($_SESSION['blad']);
-					$rezultat->free_result();
-					header('Location: udanelogowanie.php');
-				}
-				else 
-				{
-					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
-					header('Location: logowanie.php');
-				}
-				
-			} else {
-				
-				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
-				header('Location: logowanie.php');
-				
-			}
-			
-		}
-		
-		$polaczenie->close();
-	}
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,43 +68,31 @@
            </ul>
          </div>
        </nav>
-        <br><br><br><br>
-        <div>
-	      <br /><br />
+        <br><br><br><br>  
+		<form action="zaloguj.php" method="post">
 	
-      	<form action="logowanie.php" method="post">
+			Login: <br /> <input type="text" name="login" /> <br />
+			Hasło: <br /> <input type="password" name="haslo" /> <br /><br />
+			<input type="submit" value="Zaloguj się" />
+		</form>
 	
-	    	Login: <br /> <input type="text" name="login" /> <br />
-	    	Hasło: <br /> <input type="password" name="haslo" /> <br /><br />
-	  	 <input type="submit" value="Zaloguj się" />
-	
-    	</form>
-	
-<?php
-	if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
-?>
-<a href="rejestracja.php"><button type="button" class="btn btn-danger">Zarejestruj się</button></a>
-</div>
-
-        <br><br><br><br>
-
-        <br><br>
-
+		<?php
+			if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+		?>
+		<a href="rejestracja.php"><button>Zarejestruj się</button></a>
       </div>
+<br><br><br><br><br><br><br><br><br><br>
+<footer class="footer mt-auto py-3 bg-dark">
+  <div class="row" style="text-align: center">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-md-12 textnaglowek"><p>Kontakt <br>telefon - 0796124032<br>email - email@poczta.com</p></div>
+        </div>
+      </div>
+      <div class="col-2"></div>
     </div>
-      <br><br><br><br>
-
-      <footer class="footer mt-auto py-3 bg-dark">
-        <div class="row" style="text-align: center">
-            <div class="col-2"></div>
-            <div class="col-8">
-              <div class="row">
-                <div class="col-md-12 textnaglowek"><p>Kontakt <br>telefon - 0796124032<br>email - email@poczta.com</p></div>
-              </div>
-            </div>
-            <div class="col-2"></div>
-          </div>
-    </footer>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>

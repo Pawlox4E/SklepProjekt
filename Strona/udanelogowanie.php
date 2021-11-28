@@ -1,3 +1,14 @@
+<?php
+
+	session_start();
+	
+	if (!isset($_SESSION['zalogowany']))
+	{
+		header('Location: logowanie.php');
+		exit();
+	}
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,18 +70,20 @@
        </nav>
         <br><br><br><br>
         <div>
-	      <br /><br />
+	     
 	
           <?php
 
-            echo "<p>Witaj ".$_SESSION['imie'].$_SESSION['nazwisko'].'! [ <a href="wyloguj.php">Wyloguj się!</a> ]</p>';
-            echo "<p><b>miejscowosc</b>: ".$_SESSION['miejscowosc'];
-            echo " | <b>ulica</b>: ".$_SESSION['ulica'];
-            echo " | <b>numer_domu</b>: ".$_SESSION['numer_domu']."</p>";
-            echo " | <b>nr_telefonu</b>: ".$_SESSION['nr_telefonu']."</p>";
-            echo "<p><b>E-mail</b>: ".$_SESSION['email'];
+            echo "<p><b>Witaj </b>".$_SESSION['imie']." ".$_SESSION['nazwisko']."</p>";
+            echo "<p><b>miejscowosc: </b> ".$_SESSION['miejscowosc']."</p>";
+            echo "<p><b>ulica: </b>".$_SESSION['ulica']."</p>";
+            echo "<p><b>numer_domu: </b>".$_SESSION['numer_domu']."</p>";
+            echo "<p><b>nr_telefonu: </b>".$_SESSION['nr_telefonu']."</p>";
+            echo "<p><b>E-mail: </b>".$_SESSION['email']."</p>";
 
-?>
+		?>
+		<br>
+		<a href="wyloguj.php"><button>wyloguj</button></a>
 </div>
 
         <br><br><br><br>

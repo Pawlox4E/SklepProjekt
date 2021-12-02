@@ -94,12 +94,17 @@ drop table if exists `telefony`;
 Create table `telefony`(
 `id_telefonu` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `id_kolor` int not null,
-`id_producent` int not null,
  `cena` decimal default null,
+`rozmiar_ekranu` text,
+`rozdzielczosc_ekranu` text,
+`pamiec_flash` text,
+`pamiec_ram` text,
  `ilosc` int default null,
  `opis` text,
+ `zdjecie` text,
 primary key (`id_telefonu`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,11 +132,14 @@ Create table `ram`(
 `id_ram` int not null auto_increment,
 `id_kategoria` int not null,
 `id_producent` int not null,
+`nazwa` text,
  `cena` decimal default null,
- `pojemnosc` int default null,
+ `pojemnosc` text,
  `moduły` text,
  `typ` varchar(128),
- `zdjecie`VarBinary(500000000),
+ `taktowanie` text,
+ `zdjecie` text,
+ `opis` text,
  `ilosc` int default null,
 primary key (`id_ram`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -140,16 +148,16 @@ drop table if exists `dysk`;
 Create table `dysk`(
 `id_dysk` int not null auto_increment,
 `id_kategoria` int not null,
-`nazwa` text,
 `id_producent` int not null,
- `cena` decimal default null,
- `opis` text,
-  `typ` varchar(128),
-   `pojemnosc` int default null,
-   `interfejs` varchar(64),
-   `format` varchar(64),
-   `zdjecie`VarBinary(500000000),
-   `ilosc` int default null,
+`nazwa` text,
+`cena` decimal default null,
+`pojemnosc` varchar(64),
+`interfejs` varchar(64),
+`typ` varchar(64),
+`format` varchar(64),
+`zdjecie` varchar(128),
+`opis` text,
+`ilosc` int default null,
 primary key (`id_dysk`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -157,13 +165,14 @@ drop table if exists `gpu`;
 Create table `gpu`(
 `id_gpu` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `id_kolor` int not null,
-`id_producent` int not null,
  `cena` decimal default null,
  `seria` varchar(64),
  `model` varchar(64),
- `zdjecie`VarBinary(500000000),
+ `zdjecie` varchar(128),
+ `opis` text,
  `ilosc` int default null,
 primary key (`id_gpu`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -172,9 +181,9 @@ drop table if exists `obudowa`;
 Create table `obudowa`(
 `id_obudowa` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `id_kolor` int not null,
-`id_producent` int not null,
  `cena` decimal default null,
  `rozmiar` varchar(16),
  `opis` text,
@@ -187,9 +196,9 @@ drop table if exists `cpu`;
 Create table `cpu`(
 `id_cpu` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `taktowanie` varchar(32),
-`id_producent` int not null,
  `cena` decimal default null,
  `rdzenie` varchar(64),
  `opis` text,
@@ -202,9 +211,9 @@ drop table if exists `mobo`;
 Create table `mobo`(
 `id_mobo` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `id_kolor` int not null,
-`id_producent` int not null,
  `cena` decimal default null,
  `ilosc` int default null,
  `opis` text,
@@ -219,9 +228,9 @@ drop table if exists `zasilacz`;
 Create table `zasilacz`(
 `id_zasilacz` int not null auto_increment,
 `id_kategoria` int not null,
+`id_producent` int not null,
 `nazwa` text,
 `id_kolor` int not null,
-`id_producent` int not null,
  `cena` decimal default null,
  `moc` varchar(64),
  `opis` text,

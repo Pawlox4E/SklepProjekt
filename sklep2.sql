@@ -12,31 +12,14 @@ CREATE TABLE `pracownik` (
     PRIMARY KEY (`id_pracownik`)
 )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
-DROP TABLE IF EXISTS `produkt`;
-CREATE TABLE `produkt` (
-    `id_produkt` INT NOT NULL AUTO_INCREMENT,
-    `nazwa` VARCHAR(48) DEFAULT NULL,
-    `kategoria` VARCHAR(48) NOT NULL,
-    `typ` VARCHAR(48) NOT NULL,
-    `wariant` VARCHAR(48) NOT NULL,
-    `ilosc` int default null,
-    `cena_kupna` decimal default null,
-    `cena_sprzedaz` decimal default null,
-    PRIMARY KEY (`id_produkt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `zamowienie`;
 CREATE TABLE `zamowienie` (
 	`id_zamowienie` INT NOT NULL AUTO_INCREMENT,
     `data_zamowienia` DATE DEFAULT NULL,
     `id_uzytkownik` INT NOT NULL,
-    `id_produkt` INT NOT NULL,
     `id_pracownik` INT NOT NULL,
     `wartosc` decimal not null,
     `status` varchar(64) not null,
-    `id_kolor` INT NOT NULL,
-    `id_producent` INT NOT NULL,
-    `id_kategoria` INT NOT NULL,
     PRIMARY KEY (`id_zamowienie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,6 +54,7 @@ drop table if exists `kolory`;
 Create table `kolory`(
 `id_kolor` int not null auto_increment,
 `kolor` text,
+ `hex` text,
 primary key (`id_kolor`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -95,7 +79,7 @@ primary key (`id_peryferia`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists `producenci`;
-Create table `peryferia`(
+Create table `producenci`(
 `id_producent` int not null auto_increment,
 `producent` text,
 `email` varchar(128),
@@ -103,7 +87,7 @@ Create table `peryferia`(
 `miejscowosc` text,
  `ulica`varchar(128),
  `numer` varchar(16),
-primary key (`id_producenta`)
+primary key (`id_producent`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists `telefony`;
@@ -170,7 +154,7 @@ primary key (`id_dysk`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists `gpu`;
-Create table `telefony`(
+Create table `gpu`(
 `id_gpu` int not null auto_increment,
 `id_kategoria` int not null,
 `nazwa` text,
@@ -186,7 +170,7 @@ primary key (`id_gpu`)
 
 drop table if exists `obudowa`;
 Create table `obudowa`(
-`id_tobudowa` int not null auto_increment,
+`id_obudowa` int not null auto_increment,
 `id_kategoria` int not null,
 `nazwa` text,
 `id_kolor` int not null,
@@ -256,31 +240,28 @@ Alter table obudowa add unique index (`id_obudowa`);
 Alter table gpu add unique index (`id_gpu`);
 Alter table dysk add unique index (`id_dysk`);
 Alter table ram add unique index (`id_ram`);
-Alter table komputery add unique index (`id_komputera`);
+Alter table komputery add unique index (`id_komputer`);
 ALTER TABLE producenci ADD UNIQUE INDEX (`id_producent`);
 ALTER TABLE telefony ADD UNIQUE INDEX (`id_telefonu`);
 ALTER TABLE peryferia ADD UNIQUE INDEX (`id_peryferia`);
 ALTER TABLE kolory ADD UNIQUE INDEX (`id_kolor`);
-ALTER TABLE kategoria ADD UNIQUE INDEX (`id_kategoria`);
+ALTER TABLE kategorie ADD UNIQUE INDEX (`id_kategoria`);
 ALTER TABLE pracownik ADD UNIQUE INDEX (`id_pracownik`);
-ALTER TABLE produkt ADD UNIQUE INDEX (`id_produkt`);
 ALTER TABLE zamowienie ADD UNIQUE INDEX (`id_zamowienie`);
 ALTER TABLE uzytkownik ADD UNIQUE INDEX (`id_pracownik`);
 ALTER TABLE koszyk ADD UNIQUE INDEX (`id_koszyk`);
 
 
-
-ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolory`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_produkt`) REFERENCES `produkt`(`id_produkt`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_pracownik`) REFERENCES `pracownik`(`id_pracownik`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE zamowienie ADD CONSTRAINT FOREIGN KEY (`id_uzytkownik`) REFERENCES `uzytkownik`(`id_uzytkownik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE uzytkownik ADD CONSTRAINT FOREIGN KEY (`id_koszyk`) REFERENCES `koszyk`(`id_koszyk`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE uzytkownik ADD CONSTRAINT FOREIGN KEY (`id_pracownik`) REFERENCES `pracownik`(`id_pracownik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE koszyk ADD CONSTRAINT FOREIGN KEY (`id_zamowienie`) REFERENCES `zamowienie`(`id_zamowienie`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ALTER TABLE koszyk ADD CONSTRAINT FOREIGN KEY (`id_zamowienie`) REFERENCES `zamowienie`(`id_zamowienie`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE koszyk ADD CONSTRAINT FOREIGN KEY (`id_uzytkownik`) REFERENCES `uzytkownik`(`id_uzytkownik`) ON DELETE CASCADE ON UPDATE CASCADE; 
 
-ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_cpu`) REFERENCES `cpu`(`id_cpu`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_gpu`) REFERENCES `gpu`(`id_gpu`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_ram`) REFERENCES `ram`(`id_ram`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -289,26 +270,26 @@ ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_zasilacz`) REFERENCES `zas
 ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_dysk`) REFERENCES `dysk`(`id_dysk`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE komputery ADD CONSTRAINT FOREIGN KEY (`id_obudowa`) REFERENCES `obudowa`(`id_obudowa`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE ram ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE ram ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `kategoria`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE ram ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE ram ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE dysk ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE dysk ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE dysk ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE dysk ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kategoria`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolory`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE gpu ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolor`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolory`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE obudowa ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE cpu ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE cpu ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE cpu ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE cpu ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolor`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_kolor`) REFERENCES `kolory`(`id_kolor`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE mobo ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE zasilacz ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategoria`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE zasilacz ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producent`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE zasilacz ADD CONSTRAINT FOREIGN KEY (`id_kategoria`) REFERENCES `kategorie`(`id_kategoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE zasilacz ADD CONSTRAINT FOREIGN KEY (`id_producent`) REFERENCES `producenci`(`id_producent`) ON DELETE CASCADE ON UPDATE CASCADE;

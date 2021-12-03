@@ -88,7 +88,7 @@ INSERT INTO `ram` (`id_kategoria`,`id_producent`,`nazwa`,`cena`,`pojemnosc`,`mod
 ('10','20','XPG Lancer','729','16 GB','1','DDR5','5200 MHz','asd','1x16GB 5200MHz DDR5 CL38 DIMM','123'),
 ('10','20','XPG Spectrix D60G RGB','499','16 GB','2','DDR4','4133 MHz','asd','2x8GB 4133MHz DDR4 CL19 DIMM','123');
 
-INSERT INTO `ram` (`id_kategoria`,`id_producent`,`nazwa`,`cena`,`pojemnosc`,`interfejs`,`typ`,`format`,`zdjecie`,`opis`,`ilosc`) VALUES
+INSERT INTO `dysk` (`id_kategoria`,`id_producent`,`nazwa`,`cena`,`pojemnosc`,`interfejs`,`typ`,`format`,`zdjecie`,`opis`,`ilosc`) VALUES
 ('11','18','870 Evo','319','500 GB','SATA III','SSD','2.5 cala','asd','Szybkość zapisu:530 MB/s Szybkość odczytu:560 MB/s','123'),
 ('11','18','970 Evo Plus','379','500 GB','M.2','SSD','M.2 2280','asd','Szybkość zapisu:3200 MB/s Szybkość odczytu:3500 MB/s','123'),
 ('11','18','870 Evo','2499','4000 GB','SATA III','SSD','2.5 cala','asd','Szybkość zapisu:530 MB/s Szybkość odczytu:560 MB/s','123'),
@@ -153,3 +153,9 @@ INSERT INTO `zasilacz` (`id_kategoria`,`id_producent`,`nazwa`,`id_kolor`,`cena`,
 ('12','23','Pure Power 11 600W CM','8','399','600W','Modularny aktywne chłodzenie','80 Plus Gold','asd','123'),
 ('12','23','System Power 9 500W','8','599','500W','Nie modularny aktywne chłodzenie','80 Plus Bronze','asd','123'),
 ('12','23','Dark Power PRO 12 1500W','8','1899','1500W','Modularny aktywne chłodzenie','80 Plus Titanium','asd','123');
+
+INSERT INTO `komputery` (`id_kategoria`, `nazwa`, `id_cpu`, `id_gpu`, `id_ram`, `id_mobo`, `id_zasilacz`, `id_dysk`, `id_obudowa`, `cena`, `ilosc`, `opis`, `dodatki`) VALUES 
+('1', 'Nowy Komputer', '2', '2', '6', '5', '9', '2', '7', '5454', '6', 'koputer dla gracza', 'brak');
+
+INSERT INTO `peryferia` (`id_kategoria`, `nazwa`, `id_kolor`, `id_producent`, `cena`, `ilosc`, `opis`) VALUES 
+('4', 'Razer Widowmaker V3', '8', '15', '699', '123', 'Klawiatrura Gamingowa RGB');

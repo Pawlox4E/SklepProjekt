@@ -167,7 +167,6 @@ Create table `gpu`(
 `id_kategoria` int not null,
 `id_producent` int not null,
 `nazwa` text,
-`id_kolor` int not null,
  `cena` decimal default null,
  `seria` varchar(64),
  `model` varchar(64),
@@ -187,7 +186,7 @@ Create table `obudowa`(
  `cena` decimal default null,
  `rozmiar` varchar(16),
  `opis` text,
- `zdjecie`VarBinary(500000000),
+ `zdjecie` text,
  `ilosc` int default null,
 primary key (`id_obudowa`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -202,7 +201,7 @@ Create table `cpu`(
  `cena` decimal default null,
  `rdzenie` varchar(64),
  `opis` text,
- `zdjecie`VarBinary(500000000),
+ `zdjecie` text,
  `ilosc` int default null,
 primary key (`id_cpu`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,7 +219,7 @@ Create table `mobo`(
  `rozmiar` varchar(16),
  `kompatybilnosc` varchar(128),
  `chipset` varchar(64),
- `zdjecie`VarBinary(500000000),
+ `zdjecie` text,
 primary key (`id_mobo`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -235,7 +234,7 @@ Create table `zasilacz`(
  `moc` varchar(64),
  `opis` text,
  `wydajnosc` varchar(64),
- `zdjecie`VarBinary(500000000),
+ `zdjecie` text,
  `ilosc` int default null,
 primary key (`id_zasilacz`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

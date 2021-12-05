@@ -17,6 +17,12 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Panel administratora</title>
+    <link rel="stylesheet" href="css/Strona.css">
+    <link rel="stylesheet" href="css/edycja.css">
+    <link href='http://fonts.googleapis.com/css?family=Amarante&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="zdj/logo.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<?php
 		require_once "connect.php";
 		$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);	
@@ -26,20 +32,77 @@
 				  
 
 </head>
+<body>
+<div id="navblock">
+<nav class="navbar navbar-expand-md offset-lg-4 offset-md-3">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+      <a class="navbar-brand" href="index.php">
+          <img src="zdj/logo.png" class="zjdlogo" alt="Logo">
+        </a>
+      </li>
+      <li class="nav-item offset-lg-1">
+        <a class="nav-link textnaglowek" href="Produkt.php">Oferta Dnia</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link textnaglowek" href="wsparcie.php">Wsprarcie</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle textnaglowek" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Komputery
+        </a>
+        <div class="dropdown-menu textnaglowek" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item textnaglowek" href="#">Action</a>
+          <a class="dropdown-item textnaglowek" href="#">Another action</a>
+          <a class="dropdown-item textnaglowek" href="#">Something else here</a>
+        </div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle textnaglowek" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Telefony
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item textnaglowek" href="#">Action</a>
+          <a class="dropdown-item textnaglowek" href="#">Another action</a>
+          <a class="dropdown-item textnaglowek" href="#">Something else here</a>
+        </div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle textnaglowek" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Peryferia
+        </a>
+        <div class="dropdown-menu textnaglowek" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item textnaglowek" href="#">Action</a>
+          <a class="dropdown-item textnaglowek" href="#">Another action</a>
+          <a class="dropdown-item textnaglowek" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+              <a class="nav-link textnaglowek" href="Koszyk.php"><img src="zdj/Koszyk.png" class="navbarzdj" alt="koszyk"></a>
+            </li>
+      <li class="nav-item">
+            <a class="nav-link textnaglowek" href="logowanie.php"><img src="zdj/Logowanie.png" class="navbarzdj" alt="logowanie"></a>
+            </li>
 
-<?php
+    </ul>
+  </div>
+</nav>
+</div>
+
+<form id="admintable">
+	<br>
+    <?php
 	echo "<p><b>Witaj </b>".$_SESSION['imie']." ".$_SESSION['nazwisko']."</p>";
 ?>
+<p><b>Producenci</b></p>
 <br />
 
 <form action="dodajpotrawe.php" method="post">
 	
-		<input type="submit" value="Dodaj" />
+		<input type="submit" value="Dodaj" class="but" />
 </form>
-<body>
-<form id="admintable">
-	<br>
-	<p><b>Producenci</b></p>
 <table >
 			<thead>
 				<td>Id</td>

@@ -159,4 +159,11 @@ INSERT INTO `komputery` (`id_kategoria`, `nazwa`, `id_cpu`, `id_gpu`, `id_ram`, 
 
 INSERT INTO `peryferia` (`id_kategoria`, `nazwa`, `id_kolor`, `id_producent`, `cena`, `ilosc`, `opis`) VALUES 
 ('4', 'Razer Widowmaker V3', '8', '15', '699', '123', 'Klawiatrura Gamingowa RGB'),
-('3','SteelSeries Rival 3 Wireless','10','16','219','123','Mysz gamingowa SteelSeries Rival 3 Wireless');
+('3','SteelSeries Rival 3 Wireless','8','16','219','123','Mysz gamingowa SteelSeries Rival 3 Wireless'),
+('5','SteelSeries Arctis 7 Białe - Bezprzewodowe','3','15','649','123','Słuchawki SteelSeries Arctis 7 2019'),
+('5','Logitech G PRO X GAMING HEADSET','8','14','429','123','Wysokiej jakości headset firmy Logitech'),
+('5','Razer Kraken Kitty Edition Quartz Edition','16','15','599','123','Słuchawki Razer Kraken Kitty Quartz Pink'),
+('3','Logitech G502 HERO','8','14','259','123','Mysz przewodowa dla graczy Logitech G502'),
+('3','Razer Viper Ultimate & Mouse Dock Quartz','16','15','699','123','Mysz Gamingowa dla miłośniczek Gamingu'),
+('4','Corsair K100 RGB OPX','8','9','999','123','Gamingowa klawiatura RGB od firmy Corsair'),
+('4','SteelSeries Apex PRO TKL OmniPoint','8','15','949','123','Klawiatura mechaniczna SteelSeries Apex PRO TKL OmniPoint');

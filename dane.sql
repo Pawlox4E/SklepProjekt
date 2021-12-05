@@ -158,4 +158,5 @@ INSERT INTO `komputery` (`id_kategoria`, `nazwa`, `id_cpu`, `id_gpu`, `id_ram`, 
 ('1', 'Nowy Komputer', '2', '2', '6', '5', '9', '2', '7', '5454', '6', 'koputer dla gracza', 'brak');
 
 INSERT INTO `peryferia` (`id_kategoria`, `nazwa`, `id_kolor`, `id_producent`, `cena`, `ilosc`, `opis`) VALUES 
-('4', 'Razer Widowmaker V3', '8', '15', '699', '123', 'Klawiatrura Gamingowa RGB');
+('4', 'Razer Widowmaker V3', '8', '15', '699', '123', 'Klawiatrura Gamingowa RGB'),
+('3','SteelSeries Rival 3 Wireless','10','16','219','123','Mysz gamingowa SteelSeries Rival 3 Wireless');
